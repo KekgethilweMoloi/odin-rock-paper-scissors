@@ -21,10 +21,16 @@ possibleSelection.forEach(possibleSelection => possibleSelection.addEventListene
     getComputerChoice();
 }))
 
+let computerChoice;
+
 function getComputerChoice(){
-    //I want computer to randomly select a play from the range possibleSelection(remember its the buttons)
+    //I want computer to randomly select a play from the array choices
     //math.floor will make sure the random number we get is a lower interger
-    const randomSelection = Math.floor(Math.random() * possibleSelection.length);
-    console.log(randomSelection)
+    const choices = ['rock', 'paper', 'scissors'];
+    const randomSelection = Math.floor(Math.random() * choices.length);
+    //to get the word associated with the randomSelection index value I did what is happening below
+    computerChoice = choices[randomSelection];
+    computerSelection.innerHTML = computerChoice;
+
 }
 
