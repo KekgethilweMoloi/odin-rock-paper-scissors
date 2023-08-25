@@ -16,5 +16,15 @@ let playerChoice;
 possibleSelection.forEach(possibleSelection => possibleSelection.addEventListener("click",(event) => {
     playerChoice = event.target.id;
     playerSelection.innerHTML = playerChoice;
-} 
-))
+
+    //get computers selection - call a function
+    getComputerChoice();
+}))
+
+function getComputerChoice(){
+    //I want computer to randomly select a play from the range possibleSelection(remember its the buttons)
+    //math.floor will make sure the random number we get is a lower interger
+    const randomSelection = Math.floor(Math.random() * possibleSelection.length);
+    console.log(randomSelection)
+}
+
