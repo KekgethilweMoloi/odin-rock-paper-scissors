@@ -7,5 +7,14 @@ const result = document.getElementById("result");
 //the range of our selections are the buttons
 const possibleSelection = document.querySelectorAll('button');
 
-//for each button the selection should be saved to a playerSlection
-possibleSelection.forEach(possibleSelection => "click", )
+//a global variable to be accessed wherever
+let playerChoice;
+
+//for the range of buttons: each button selected should wait for an event
+//the 'click' and this event's actions should collect the button IDs and save them
+// to a var, which then saves them to the results section - playerSlection
+possibleSelection.forEach(possibleSelection => possibleSelection.addEventListener("click",(event) => {
+    playerChoice = event.target.id;
+    playerSelection.innerHTML = playerChoice;
+} 
+))
