@@ -6,6 +6,9 @@ const resultOnDisplay = document.getElementById("result");
 let playerChoice;
 let computerChoice;
 let result;
+let gamePlay = 0;
+let humanScore = 0;
+let computerScore = 0;
 //what should happen when user clicks button
 //the range of our selections are the buttons
 const possibleSelection = document.querySelectorAll('button');
@@ -20,7 +23,8 @@ possibleSelection.forEach(possibleSelection => possibleSelection.addEventListene
 
     //get computers selection - call a function
     getComputerChoice();
-    playRound(computerChoice, playerChoice);
+    //play a game
+    game();
 }))
 
 
@@ -34,29 +38,59 @@ function getComputerChoice(){
     computerSelection.innerHTML = computerChoice;
 }
 
-//results of game played
+//function will play a round and keep a score of wins
+function game() {
+    playRound(computerChoice, playerChoice);
+
+    if (gamePlay === 5 && humanScore > computerScore) {
+        result = 'Player Wins!';
+        window.alert(result);
+    }
+    if (gamePlay === 5 &&computerScore > humanScore) {
+        result = 'Cat wins!';
+        window.alert(result);
+    } 
+}
+
+
+
+//results of rounds played
 function playRound(){
     if (computerChoice === playerChoice) {
         result = 'it\'s a draw';
+        gamePlay ++;
     }
     if (computerChoice === 'rock' && playerChoice === 'scissors'){
         result = computerChoice + ' beats ' + playerChoice + ', so you lose';
+        computerScore ++;
+        gamePlay ++;
     }
     if (computerChoice === 'rock' && playerChoice === 'paper'){
         result = playerChoice + ' beats ' + computerChoice + ', so you win';
+        humanScore ++;
+        gamePlay ++;
     }
     if (computerChoice === 'paper' && playerChoice === 'rock'){
         result = computerChoice + ' beats ' + playerChoice + ', so you lose';
+        computerScore ++;
+        gamePlay ++;
     } 
     if (computerChoice === 'paper' && playerChoice === 'scissors'){
-        result = playerChoice + ' beats ' + computerChoice + ', so you win'
+        result = playerChoice + ' beats ' + computerChoice + ', so you win';
+        humanScore ++;
+        gamePlay ++;
     }
     if (computerChoice === 'scissors' && playerChoice === 'paper'){
-        result = computerChoice + ' beats ' + playerChoice + ', so you lose'
+        result = computerChoice + ' beats ' + playerChoice + ', so you lose';
+        computerScore ++;
+        gamePlay ++;
     }
     if (computerChoice === 'scissors' && playerChoice === 'rock'){
-        result = playerChoice + ' beats ' + computerChoice + ', so you win'
+        result = playerChoice + ' beats ' + computerChoice + ', so you win';
+        humanScore ++;
+        gamePlay ++;
     }
     resultOnDisplay.innerHTML = result;
 }
+
 
