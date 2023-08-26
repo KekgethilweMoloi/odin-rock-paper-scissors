@@ -1,4 +1,4 @@
-//a place to store all the results of the selections
+//a place to store all the results of the selections to display
 const computerSelection = document.getElementById("computerSelection");
 const playerSelection = document.getElementById("playerSelection");
 const resultOnDisplay = document.getElementById("result");
@@ -14,49 +14,44 @@ let computerScore = 0;
 const possibleSelection = document.querySelectorAll('button');
 
 
-//for the range of buttons: each button selected should wait for an event
-//the 'click' and this event's actions should collect the button IDs and save them
-// to a var, which then saves them to the results section - playerSlection
-possibleSelection.forEach(possibleSelection => possibleSelection.addEventListener("click",(event) => {
+//button selection leads to button id collection 
+//which then saves id to the results section - playerSlection
+possibleSelection.forEach (possibleSelection => possibleSelection.addEventListener("click",(event) => {
     playerChoice = event.target.id;
     playerSelection.innerHTML = playerChoice;
 
-    //get computers selection - call a function
     getComputerChoice();
-    //play a game
     game();
 }))
 
 
 function getComputerChoice(){
     //I want computer to randomly select a play from the array choices
-    //math.floor will make sure the random number we get is a lower interger
     const choices = ['rock', 'paper', 'scissors'];
     const randomSelection = Math.floor(Math.random() * choices.length);
-    //to get the word associated with the randomSelection index value I did what is happening below
+    //get the word associated with the randomSelection index value
     computerChoice = choices[randomSelection];
     computerSelection.innerHTML = computerChoice;
 }
 
-//function will play a round and keep a score of wins
-function game() {
+//function will play a round and keep a score of wins to later
+//display the overall winner
+function game(){
     playRound(computerChoice, playerChoice);
 
-    if (gamePlay === 5 && humanScore > computerScore) {
+    if (gamePlay === 5 && humanScore > computerScore){
         result = 'Player Wins!';
         window.alert(result);
     }
-    if (gamePlay === 5 &&computerScore > humanScore) {
+    if (gamePlay === 5 &&computerScore > humanScore){
         result = 'Cat wins!';
         window.alert(result);
     } 
 }
 
-
-
 //results of rounds played
 function playRound(){
-    if (computerChoice === playerChoice) {
+    if (computerChoice === playerChoice){
         result = 'it\'s a draw';
         gamePlay ++;
     }
